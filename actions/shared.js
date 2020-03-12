@@ -2,19 +2,22 @@
 import {getInitialData} from "../utils/api";
 
 
-export function getUsers(users) {
+export function getDecks(decks) {
     return {
-      type: "RECEIVE_USERS",
-      users: users
+      type: "RECEIVE_DATA",
+      decks: decks
     }
   }
 
+
 export function handleLoadInitialData() {
     return (dispatch) => {
+      dispatch({type: "SET_LOADING"});
       return getInitialData()
-      .then(({users}) => {
-        dispatch(getUsers(users))
+      .then(({decks}) => {
+        dispatch(getDecks(decks))
       }).then(()=>{
+        dispatch({type: "FINISH_LOADING"});
       })
     }
   }

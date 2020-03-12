@@ -6,26 +6,15 @@ import { Provider } from 'react-redux';
 import {createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import {logger} from "./middlewares/appMiddlewares";
-import {iniData} from "./reducers/appReducers";
+import {iniData, loading} from "./reducers/appReducers";
 import {handleLoadInitialData} from "./actions/shared";
-
+import HomeScreen from "./components/HomeScreen";
 
 const store = createStore(combineReducers({
-  iniData,
+  loading,
+  iniData
 }), applyMiddleware(thunk,logger));
 
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
 
 function DetailsScreen() {
   return (

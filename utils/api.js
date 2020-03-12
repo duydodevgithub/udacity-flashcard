@@ -1,11 +1,13 @@
 import {
-    _getUsers,
+  _getAllDecks,
   } from './_DATA';
+
+import {AsyncStorage} from "react-native";
   
-  export function getInitialData() {
-    return Promise.all([_getUsers()]).then(([users]) => {
-      return {
-        users,
-      };
-    });
-  }
+export function getInitialData() {
+  return Promise.all([_getAllDecks()]).then(([decks]) => {
+    return {
+      decks,
+    };
+  });
+}
