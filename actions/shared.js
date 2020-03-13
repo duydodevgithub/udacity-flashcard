@@ -4,7 +4,7 @@ import {getInitialData} from "../utils/api";
 
 export function getDecks(decks) {
     return {
-      type: "RECEIVE_DATA",
+      type: "RECEIVE_DECKS",
       decks: decks
     }
   }

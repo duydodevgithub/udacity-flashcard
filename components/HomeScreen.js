@@ -1,39 +1,71 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Alert, View, Text, Button, StyleSheet, SafeAreaView, FlatList } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
 
 
+function Item({ title }) {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.title}>{title}</Text>
+        <Button
+            title={title}
+            onPress={() => Alert.alert('Simple Button pressed')}
+        />
+      </View>
+    );
+  }
+
+
 class HomeScreen extends React.Component {
     render() {
-        const {navigation} = this.props;
-
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        if(this.props.loading) {
+            return (
                 <Spinner
-                        visible={this.props.loading}
-                        textContent={'Loading...'}
-                        textStyle={styles.spinnerTextStyle}
+                    visible={true}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
                 />
-                <Text>Home Screen</Text>
-                <Button
-                    title="Go to Details"
-                    onPress={() => navigation.navigate('Details')}
-                />
-            </View>
+            )
+        }
+        const {navigation, decks} = this.props;
+        console.log(decks);
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text>Home Screen</Text>
+                    <FlatList
+                        data={decks}
+                        renderItem={({ item }) => <Item title={item.title} />}
+                        keyExtractor={item => item.id}
+                    />
+                    
+                </View>
+            </SafeAreaView>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginHorizontal: 16,
+      },
     spinnerTextStyle: {
-      color: '#FFF'
-    }
+        color: '#FFF'
+    },
+    item: {
+        backgroundColor: '#ffffff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+      },
   });
 
-function mapStateToProps({loading}) {
+function mapStateToProps({loading, iniData}) {
     return {
-        loading
+        loading,
+        decks: Object.values(iniData)
     }
 }
 
