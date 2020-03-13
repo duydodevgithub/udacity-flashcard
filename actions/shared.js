@@ -1,5 +1,5 @@
 
-import {getInitialData} from "../utils/api";
+import {getInitialData, saveDeck} from "../utils/api";
 
 
 export function getDecks(decks) {
@@ -9,6 +9,23 @@ export function getDecks(decks) {
     }
   }
 
+export function saveNewDeck() {
+  return {
+    type: "ADD_NEW_DECK"
+  }
+}
+
+export function handleAddNewDeck(name) {
+  return(dispatch) => {
+    dispatch({type: "SET_LOADING"});
+    return saveDeck(name)
+    .then(({decks}) => {
+      dispatch(getDecks(decks));
+    }).then(()=>{
+      dispatch({type: "FINISH_LOADING"});
+    })
+  }
+}
 
 export function handleLoadInitialData() {
     return (dispatch) => {

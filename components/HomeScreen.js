@@ -4,18 +4,18 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
 
 
-function Item({ title }) {
+function Item({ data, navigation }) {
     return (
       <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>Title: {data.title}</Text>
         <Button
-            title={title}
-            onPress={() => Alert.alert('Simple Button pressed')}
+            style={styles.title}
+            title='Choose Deck'
+            onPress={() => navigation.navigate('DeckDetail', {deck: data})}
         />
       </View>
     );
   }
-
 
 class HomeScreen extends React.Component {
     render() {
@@ -33,13 +33,17 @@ class HomeScreen extends React.Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>Home Screen</Text>
+                    <Text>Notification Appear here</Text>
                     <FlatList
                         data={decks}
-                        renderItem={({ item }) => <Item title={item.title} />}
+                        renderItem={({ item }) => <Item data={item} navigation={navigation} />}
                         keyExtractor={item => item.id}
                     />
-                    
+                    <Button
+                        style={styles.title}
+                        title='Add New Deck'
+                        onPress={() => navigation.navigate('AddNewDeck')}
+                    />
                 </View>
             </SafeAreaView>
         )

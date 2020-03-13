@@ -9,20 +9,18 @@ import {logger} from "./middlewares/appMiddlewares";
 import {iniData, loading} from "./reducers/appReducers";
 import {handleLoadInitialData} from "./actions/shared";
 import HomeScreen from "./components/HomeScreen";
+import DeckDetailScreen from "./components/DeckDetailScreen";
+import AddNewDeckScreen from "./components/AddNewDeckScreen";
+import AddNewCardScreen from "./components/AddNewCardScreen";
+import QuizScreen from "./components/QuizScreen";
+
+
 
 const store = createStore(combineReducers({
   loading,
   iniData
 }), applyMiddleware(thunk,logger));
 
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
 
 const Stack = createStackNavigator();
 
@@ -37,7 +35,10 @@ class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Details" component={DetailsScreen} />
+            <Stack.Screen name="DeckDetail" component={DeckDetailScreen} />
+            <Stack.Screen name="AddNewDeck" component={AddNewDeckScreen} />
+            <Stack.Screen name="AddNewCard" component={AddNewCardScreen} />
+            <Stack.Screen name="Quiz" component={QuizScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

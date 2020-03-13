@@ -28,19 +28,19 @@ let cards = {
   let decks = {
     sar8xf0y6ziyjedfdfozdd253nd: {
       id: 'sar8xf0y6ziyjedfdfozdd253nd',
-      title: 'sarahedo Default Deck 1',
+      title: 'Default Deck 1',
       timestamp: 1467356887634,
       cardlist: ['8xf0y6ziyjabvozdd253nd'],
     },
     tylergfgfbdfgrbcvkhyozdd253nd: {
       id: 'tylergfgfbdfgrbcvkhyozdd253nd',
-      title: 'tylermcginnis Default deck 1',
+      title: 'Default deck 2',
       timestamp: 1467398787634,
       cardlist: ['8xf023fdfbef6ziyjabvozdd253nd', 'sdg3fhdfsgiyjabvozdd253nd'],
     },
     t43241ylergfgfbdfgrbcvkhyozdd253nd: {
       id: 't43241ylergfgfbdfgrbcvkhyozdd253nd',
-      title: 'tylermcginnis Default deck 2',
+      title: 'Default deck 3',
       timestamp: 1467498787634,
       cardlist: ['123123sdg3fhdfsgiyjabvozdd253nd'],
     },
@@ -59,11 +59,10 @@ let cards = {
     );
   }
   
-  function formatDeck({ title, author }) {
+  function formatDeck({ title }) {
     return {
       id: generateUID(),
       title,
-      author,
       timestamp: Date.now(),
       cardlist: [],
     };
@@ -89,25 +88,16 @@ let cards = {
     });
   }
   
-  export function _saveDeck(deckDetail, userId) {
+  export function _saveDeck(name) {
     return new Promise((res, rej) => {
-      const authedUser = userId;
       const formattedDeck = formatDeck({
-        title: deckDetail.deck,
-        author: userId,
+        title: name,
       });
   
       setTimeout(() => {
         decks = {
           ...decks,
           [formattedDeck.id]: formattedDeck,
-        };
-        users = {
-          ...users,
-          [authedUser]: {
-            ...users[authedUser],
-            decks: users[authedUser].decks.concat([formattedDeck.id]),
-          },
         };
         res({ [formattedDeck.id]: formattedDeck });
       }, 1000);
