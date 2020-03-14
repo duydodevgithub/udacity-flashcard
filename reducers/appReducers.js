@@ -9,6 +9,17 @@ export const iniData = (state = INI_STATE, action) => {
   }
 };
 
+export const cards = (state = {}, action) => {
+  switch (action.type) {
+    case 'RECEIVE_CARDS':
+      return action.cards;
+    case 'ADD_CARD':
+      return {...state, ...action.card}
+    default:
+      return state;
+  }
+};
+
 export const loading = (state = true, action) => {
   switch (action.type) {
     case 'SET_LOADING':

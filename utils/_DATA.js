@@ -67,10 +67,25 @@ let cards = {
       cardlist: [],
     };
   }
+
+  function formatCard({ question, answer }) {
+    return {
+      id: generateUID(),
+      text: question,
+      timestamp: Date.now(),
+      answer: answer,
+    };
+  }
   
   export function _getCards() {
     return new Promise((res, rej) => {
       setTimeout(() => res({ ...cards }), 1000);
+    });
+  }
+
+  export function _getCard(id) {
+    return new Promise((res, rej) => {
+      setTimeout(() => res({ id: cards[id] }), 1000);
     });
   }
   
@@ -103,4 +118,22 @@ let cards = {
       }, 1000);
     });
   }
+
+  export function _saveCard(name, answer, deckId) {
+    return new Promise((res, rej) => {
+      const formattedCard = formatCard({
+        question: name,
+        answer: answer
+      });
+      decks[deckId].cardlist.push(formattedCard.id)
+      setTimeout(() => {
+        cards = {
+          ...cards,
+          [formattedCard.id]: formattedCard,
+        };
+        res({ [formattedCard.id]: formattedCard });
+      }, 1000);
+    });
+  }
+
   

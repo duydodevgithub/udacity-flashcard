@@ -31,10 +31,9 @@ class DeckDetailScreen extends React.Component {
                     <Button
                         style={styles.title}
                         title='Add New Card'
-                        onPress={() => this.props.navigation.navigate("AddNewCard")}
+                        onPress={() => this.props.navigation.navigate("AddNewCard", {deckId: deck.id})}
                     />
             </SafeAreaView>
-        
         )
     }
 }

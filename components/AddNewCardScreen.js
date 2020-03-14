@@ -3,6 +3,7 @@ import { Alert, View, Text, Button, StyleSheet, SafeAreaView, FlatList, Touchabl
 import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
 import t from 'tcomb-form-native';
+import { handleAddNewCard } from "../actions/shared"
 
 
 const Form = t.form.Form;
@@ -28,22 +29,34 @@ class AddNewCardScreen extends React.Component {
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
   
-    handleFormSubmit() {
+    handleFormSubmit(deckId) {
       var value = this.refs.form.getValue();
       if (value) {
-        console.log(value);
+        const question = value.question;
+        if(value.answer.toLowerCase() === "yes") {
+          const answer = 1;
+          this.props.dispatch(handleAddNewCard(question, answer, deckId));
+          this.props.navigation.navigate("DeckDetail");
+        } else if (value.answer.toLowerCase() === "no") {
+          const answer = 0;
+          this.props.dispatch(handleAddNewCard(question, answer, deckId));
+          this.props.navigation.navigate("DeckDetail");
+        } else {
+          Alert.alert("Please only enter yes or no");
+        }
+        //save to backend here
       }
-      // this.props.navigation.navigate('DeckList');
     }
   
     render() {
+      const deckId = this.props.route.params.deckId;
       return (
         <View style={styles.container}>
           <Form ref="form" type={Card} options={options} />
   
           <TouchableHighlight
             style={styles.button}
-            onPress={this.handleFormSubmit}
+            onPress={() => this.handleFormSubmit(deckId)}
             underlayColor="#99d9f4">
             <Text style={styles.buttonText}>Save</Text>
           </TouchableHighlight>
