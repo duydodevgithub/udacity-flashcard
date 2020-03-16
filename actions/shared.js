@@ -29,6 +29,12 @@ export function saveNewDeck() {
   }
 }
 
+export function getHistory(history) {
+  return {
+    type: "RECEIVE_HISTORY",
+    history
+  }
+}
 
 
 export function handleAddNewDeck(name) {
@@ -60,9 +66,10 @@ export function handleLoadInitialData() {
     return (dispatch) => {
       dispatch({type: "SET_LOADING"});
       return getInitialData()
-      .then(({decks, cards}) => {
+      .then(({decks, cards, history}) => {
         dispatch(getDecks(decks)),
-        dispatch(getCards(cards))
+        dispatch(getCards(cards)),
+        dispatch(getHistory(history));
       }).then(()=>{
         dispatch({type: "FINISH_LOADING"});
       })

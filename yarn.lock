@@ -3740,6 +3740,16 @@ react-native-loading-spinner-overlay@^1.1.0:
   dependencies:
     prop-types "^15.6.2"
 
+react-native-pie-chart@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-pie-chart/-/react-native-pie-chart-1.0.13.tgz#2f456ea1aec831dba2de930235df3c6d2c478294"
+  integrity sha512-3SYGGDq3ZnL6kJNeaFxd7BHqBU1+umD9POYYlGMlYEE0sPpZ7Pw+kgiPcm70xUP9Kuj8/def3A2/0krOtNhohA==
+
+react-native-pie@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-pie/-/react-native-pie-1.1.2.tgz#9cd4d428e85cc232877e5f7cdb2bea9f724fcbac"
+  integrity sha512-aShbks0NA4QzXftKpdQd/lNfkvj23yS2pF1A61Y+bKhFMnky0xubN1m4edcDNVWC0a2l40rM9C3JwJOIchv3kQ==
+
 react-native-reanimated@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"

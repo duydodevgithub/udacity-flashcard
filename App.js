@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import {createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import {logger} from "./middlewares/appMiddlewares";
-import {iniData, loading, cards} from "./reducers/appReducers";
+import {iniData, loading, cards, history} from "./reducers/appReducers";
 import {handleLoadInitialData} from "./actions/shared";
 import HomeScreen from "./components/HomeScreen";
 import DeckDetailScreen from "./components/DeckDetailScreen";
@@ -15,11 +15,11 @@ import AddNewCardScreen from "./components/AddNewCardScreen";
 import QuizScreen from "./components/QuizScreen";
 
 
-
 const store = createStore(combineReducers({
   loading,
   iniData,
-  cards
+  cards,
+  history
 }), applyMiddleware(thunk,logger));
 
 
