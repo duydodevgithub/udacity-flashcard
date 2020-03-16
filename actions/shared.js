@@ -1,5 +1,6 @@
 
 import {getInitialData, saveDeck, saveCard} from "../utils/api";
+import {AsyncStorage} from "react-native";
 
 
 export function getDecks(decks) {
@@ -32,6 +33,13 @@ export function saveNewDeck() {
 export function getHistory(history) {
   return {
     type: "RECEIVE_HISTORY",
+    history
+  }
+}
+
+export function addHistory(history) {
+  return {
+    type: "ADD_HISTORY",
     history
   }
 }
@@ -75,3 +83,20 @@ export function handleLoadInitialData() {
       })
     }
   }
+
+export function handleSaveResult(history) {
+    return(dispatch) => {
+      return _storeHistory(history)
+      .then(() => {
+        dispatch(addHistory(history));
+      })
+    }
+}
+
+const _storeHistory = async (history) => {
+  try {
+    await AsyncStorage.setItem('history', JSON.stringify(history));
+  } catch (error) {
+  }
+};
+

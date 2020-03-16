@@ -2,6 +2,7 @@ import React from "react";
 import { Alert, View, Text, Button, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
+import {handleSaveResult} from "../actions/shared";
 
 
 class QuizScreen extends React.Component {
@@ -106,6 +107,7 @@ class QuizScreen extends React.Component {
             timestamp: Math.round((new Date()).getTime() / 1000)
         }
         console.log(resultObj);
+        // this.props.dispatch(handleSaveResult(resultObj));
         this.props.navigation.navigate("Home")
     }
 

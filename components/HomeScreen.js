@@ -73,7 +73,7 @@ class HomeScreen extends React.Component {
                         source={{ uri: 'https://www.netcetra.com/images/howto_images/picmonkey-logo.jpg' }}
                     /> */}
 
-                    {this.props.history[today()] ? 
+                    {/* {this.props.history[today()] ? 
                         (<View>
                             <Text>Decks you have done today: </Text>
                             {
@@ -84,7 +84,7 @@ class HomeScreen extends React.Component {
                         </View>)
                         : 
                         (<View><Text>You haven't done any decks today</Text></View>)
-                    }
+                    } */}
                 </View>
                 {this.props.decks.length > 0 ? 
                 (<Animated.View style={[styles.deckList, {opacity: this.state.opacity}]}>

@@ -13,6 +13,8 @@ export const history = (state = INI_STATE, action) => {
   switch (action.type) {
     case 'RECEIVE_HISTORY':
       return action.history;
+    case 'ADD_HISTORY':
+      return {...state,...action.history}
     default:
       return state;
   }
