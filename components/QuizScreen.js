@@ -106,7 +106,7 @@ class QuizScreen extends React.Component {
             timestamp: Math.round((new Date()).getTime() / 1000)
         }
         console.log(resultObj);
-        // this.props.navigation.navigate("Home")
+        this.props.navigation.navigate("Home")
     }
 
     showAnswer(ans) {
