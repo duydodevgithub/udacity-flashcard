@@ -84,19 +84,19 @@ export function handleLoadInitialData() {
     }
   }
 
-export function handleSaveResult(history) {
-    return(dispatch) => {
-      return _storeHistory(history)
-      .then(() => {
-        dispatch(addHistory(history));
-      })
-    }
-}
+// export function handleSaveResult(history) {
+//     return(dispatch) => {
+//       return _storeHistory(history)
+//       .then(() => {
+//         dispatch(addHistory(history));
+//       })
+//     }
+// }
 
-const _storeHistory = async (history) => {
-  try {
-    await AsyncStorage.setItem('history', JSON.stringify(history));
-  } catch (error) {
-  }
-};
+// const _storeHistory = async (history) => {
+//   try {
+//     await AsyncStorage.setItem('history', JSON.stringify(history));
+//   } catch (error) {
+//   }
+// };
 
